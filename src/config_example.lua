@@ -1,0 +1,8 @@
+-- config.example.lua
+SSID = "YOUR_WIFI_NAME"
+PASS = "YOUR_WIFI_PASSWORD"
+
+DHT_PIN = 4
+
+TEMP_HIGH_C = 28.0
+HUM_HIGH_PCT = 70.0
