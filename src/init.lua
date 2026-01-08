@@ -1,29 +1,33 @@
--- init.lua (Day 1)
 -- init.lua
 local ok, err = pcall(dofile, "config.lua")
-if not ok then
-  print("Missing/failed config.lua: " .. tostring(err))
-  -- Stop here so you don't accidentally run with blank credentials
-  return
-end
+if not ok then print("config.lua error: " .. tostring(err)); return end
 
 wifi.setmode(wifi.STATION)
 wifi.sta.config({ ssid = SSID, pwd = PASS, save = false })
 wifi.sta.connect()
 
-local function read_and_print()
-  local status, temp_c, hum_pct = dht.read11(DHT_PIN)  -- float firmware: use first 3
-  if status == dht.OK then
-    print(string.format("IP=%s  T=%.1fC  RH=%.1f%%",
-      wifi.sta.getip() or "no-ip", temp_c, hum_pct))
-  elseif status == dht.ERROR_CHECKSUM then
-    print("DHT checksum error")
-  else
-    print("DHT timeout")
+-- Wait for IP, then start server and periodic prints
+tmr.create():alarm(500, tmr.ALARM_AUTO, function(t)
+  local ip = wifi.sta.getip()
+  if ip then
+    t:unregister()
+    print("IP:", ip)
+
+    -- Optional mDNS (if module exists)
+    if mdns then
+      mdns.register("room-sensor", { service="http", port=80, description="Room Sensor" })
+      print("mDNS: http://room-sensor.local/")
+    end
+
+    -- Start HTTP server
+    dofile("server.lua")
+
+    -- Optional: keep Day 1 periodic serial prints
+    tmr.create():alarm(5000, tmr.ALARM_AUTO, function()
+      local st, temp_c, hum_pct = dht.read11(DHT_PIN)
+      if st == dht.OK then
+        print(string.format("T=%.1fC RH=%.1f%%", temp_c, hum_pct))
+      end
+    end)
   end
-end
-
-tmr.create():alarm(5000, tmr.ALARM_AUTO, read_and_print)
-
-
-
+end)
