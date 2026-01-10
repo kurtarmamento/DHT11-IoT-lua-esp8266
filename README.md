@@ -139,7 +139,3 @@ See `docs/node_red_discord.md`.
 - Never commit `config.lua` (contains Wi-Fi credentials and potentially webhook URLs).
 - Use `config.example.lua` for the repo.
 - Treat Discord webhooks as secrets.
-
-## License
-
-Choose a license appropriate for your portfolio (MIT is common).
