@@ -76,25 +76,34 @@ Recommended structure:
 
 ```
 .
-├─ init.lua
-├─ server.lua
-├─ mqtt_pub.lua
-├─ config.example.lua
-├─ README.md
-├─ FIRMWARE.md
-├─ docs/
-│  ├─ architecture.md
-│  ├─ pc_setup.md
-│  ├─ node_red_discord.md
-│  ├─ config.md
-│  ├─ testing.md
-│  └─ troubleshooting.md
-├─ logs/
-│  └─ sample_serial_output.txt
-└─ photos/
-   ├─ build_01.jpg
-   ├─ build_02.jpg
-   └─ dashboard_and_discord.png
+- docs/
+  - images/
+    - Android Dashboard.jpg
+    - Discord Alerts.png
+    - ESP8266 and DHT11.jpg
+    - node_red_flow.png
+    - boot log.png
+  - architecture.md
+  - config.md
+  - node_red_discord.md
+  - node_red_flow_example.json
+  - pc_setup.md
+  - testing.md
+  - troubleshooting.md
+- firmware/
+  - nodemcu-release-13-modules-2026-01-09-02-16-21-float.bin
+- src/
+  - alerts.lua
+  - config_example.lua
+  - init.lua
+  - mqtt_client.lua
+  - mqtt_pub.lua
+  - notify.lua
+  - server.lua
+- .gitignore
+- FIRMWARE.md
+- LICENSE.md
+- README.md
 ```
 
 ## Setup Overview
