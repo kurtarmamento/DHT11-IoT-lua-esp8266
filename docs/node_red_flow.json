@@ -1,0 +1,166 @@
+[
+    {
+        "id": "33b5ca4eb8d68c83",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8840e8129bf58eb2",
+        "type": "mqtt in",
+        "z": "33b5ca4eb8d68c83",
+        "name": "",
+        "topic": "sensors/room-sensor-1/alert",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f3ccd24c19e7db18",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "ad58b1988090d899"
+            ]
+        ]
+    },
+    {
+        "id": "ad58b1988090d899",
+        "type": "function",
+        "z": "33b5ca4eb8d68c83",
+        "name": "function 1",
+        "func": "// Expect msg.payload from MQTT to be your alert text (string or JSON).\nconst alertText = (typeof msg.payload === \"string\")\n  ? msg.payload\n  : JSON.stringify(msg.payload);\n\n// Set up the HTTP request properties\nmsg.method = \"POST\";\nmsg.url = \"<YOUR DISCORD WEBHOOK>"; // paste your webhook URL here\nmsg.headers = { \"Content-Type\": \"application/json\" };\n\n// Discord webhook basic payload\nmsg.payload = { content: \"[Room Sensor Alert] \" + alertText };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "8ffbe6dc6f2cb0ee",
+                "20f34fa32c325ca9"
+            ]
+        ]
+    },
+    {
+        "id": "8ffbe6dc6f2cb0ee",
+        "type": "http request",
+        "z": "33b5ca4eb8d68c83",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 870,
+        "y": 280,
+        "wires": [
+            [
+                "dafdd7099f945554"
+            ]
+        ]
+    },
+    {
+        "id": "20f34fa32c325ca9",
+        "type": "debug",
+        "z": "33b5ca4eb8d68c83",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "dafdd7099f945554",
+        "type": "debug",
+        "z": "33b5ca4eb8d68c83",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1050,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9d7ebc6391f65665",
+        "type": "inject",
+        "z": "33b5ca4eb8d68c83",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hi",
+        "payloadType": "str",
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "ad58b1988090d899"
+            ]
+        ]
+    },
+    {
+        "id": "f3ccd24c19e7db18",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
