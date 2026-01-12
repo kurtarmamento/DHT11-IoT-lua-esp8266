@@ -23,11 +23,11 @@ A room temperature + humidity sensor built on ESP8266 (NodeMCU firmware, Lua) wi
 ```mermaid
 flowchart LR
   DHT11[DHT11 Sensor] --> ESP[ESP8266 / NodeMCU Lua]
-  ESP -- "HTTP :80 (GET /, /json)" --> Phone[Phone Browser]
-  ESP -- "MQTT :1883 (publish)" --> Broker[Mosquitto Broker (PC)]
-  Broker -- "MQTT subscribe" --> Dashboard[Android MQTT Dashboard]
-  Broker -- "MQTT subscribe" --> NR[Node-RED]
-  NR -- "HTTPS POST" --> Discord[Discord Webhook]
+  ESP --> "HTTP :80 (GET /, /json)" --> Phone[Phone Browser]
+  ESP --> "MQTT :1883 (publish)" --> Broker[Mosquitto Broker (PC)]
+  Broker --> "MQTT subscribe" --> Dashboard[Android MQTT Dashboard]
+  Broker --> "MQTT subscribe" --> NR[Node-RED]
+  NR --> "HTTPS POST" --> Discord[Discord Webhook]
   ...
 ```
 ## MQTT Topics
