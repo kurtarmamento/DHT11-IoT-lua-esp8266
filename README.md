@@ -20,7 +20,7 @@ A room temperature + humidity sensor built on ESP8266 (NodeMCU firmware, Lua) wi
 - **PC integration:** Mosquitto broker + Node-RED forwarding to Discord
 
 ## Architecture
-
+```mermaid
 flowchart LR
   DHT11[DHT11 Sensor] --> ESP[ESP8266 / NodeMCU Lua]
   ESP -- "HTTP :80 (GET /, /json)" --> Phone[Phone Browser]
@@ -29,7 +29,7 @@ flowchart LR
   Broker -- "MQTT subscribe" --> NR[Node-RED]
   NR -- "HTTPS POST" --> Discord[Discord Webhook]
   ...
-
+```
 ## MQTT Topics
 
 All topics are namespaced by `DEVICE_ID`.
@@ -100,13 +100,13 @@ Recommended structure:
 See `FIRMWARE.md`.
 
 ### 2) Configure device (do not commit secrets)
-1. Copy `config_example.lua` → `config.lua`
+1. Copy `src/config_example.lua` → `src/config.lua`
 2. Fill in Wi-Fi + broker settings
 3. Upload files to the ESP:
-   - `init.lua`
-   - `server.lua`
-   - `mqtt_pub.lua`
-   - `config.lua` (local only)
+   - `src/init.lua`
+   - `src/server.lua`
+   - `src/mqtt_pub.lua`
+   - `src/config.lua` (local only)
 
 ### 3) PC: run Mosquitto broker
 See `docs/pc_setup.md`.
@@ -136,3 +136,10 @@ See `docs/node_red_discord.md`.
 - Never commit `config.lua` (contains Wi-Fi credentials and potentially webhook URLs).
 - Use `config_example.lua` for the repo.
 - Treat Discord webhooks as secrets.
+
+
+## Results
+
+![Android Dashboard](/docs/images/android-dashboard.jpg "Andrdoid Dashboard")
+![Discord Alerts](/docs/images/discord-alerts.png "Discord Alerts")
+![Node Red Flow](/docs/images/node-red-flow.png "Node Red Flow")
