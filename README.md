@@ -72,6 +72,7 @@ Recommended structure:
     - ESP-board.jpg
     - node_red_flow.png
     - boot-log.png
+    - simulator-log.png
   - architecture.md
   - config.md
   - node_red_flow.json
@@ -87,6 +88,8 @@ Recommended structure:
   - server.lua
 - tools/
   - run_nodered.ps1
+  - requirements_pc.txt
+  - sim_device.py
 - .gitignore
 - FIRMWARE.md
 - LICENSE.md
