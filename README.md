@@ -68,11 +68,11 @@ Recommended structure:
 .
 - docs/
   - images/
-    - Android Dashboard.jpg
-    - Discord Alerts.png
-    - ESP8266 and DHT11.jpg
+    - android-dashboard.jpg
+    - discord-alerts.png
+    - ESP-board.jpg
     - node_red_flow.png
-    - boot log.png
+    - boot-log.png
   - architecture.md
   - config.md
   - node_red_discord.md
@@ -83,12 +83,9 @@ Recommended structure:
 - firmware/
   - nodemcu-release-13-modules-2026-01-09-02-16-21-float.bin
 - src/
-  - alerts.lua
   - config_example.lua
   - init.lua
-  - mqtt_client.lua
   - mqtt_pub.lua
-  - notify.lua
   - server.lua
 - tools/
   - run_nodered.ps1
