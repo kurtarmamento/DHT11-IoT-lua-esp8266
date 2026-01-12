@@ -75,7 +75,6 @@ Recommended structure:
     - boot-log.png
   - architecture.md
   - config.md
-  - node_red_discord.md
   - node_red_flow.json
   - pc_setup.md
   - testing.md

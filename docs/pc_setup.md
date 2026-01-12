@@ -71,15 +71,13 @@ Create a new rule if not
 
 Node-RED is only required if you are forwarding alerts to Discord.
 
-### Discord webhook secret (Node-RED)
-
 This project keeps the Discord webhook URL out of the repo and out of exported Node-RED flows by using an environment variable.
 
- 1) In discord, edit the channel you wish to add the alerts
-    Under integrations, create a new webhook and copy the link
+### 1) In discord, edit the channel you wish to add the alerts
+       Under integrations, create a new webhook and copy the link
 
 
- 2) Create your local `.env` file
+### 2) Create your local `.env` file
 
 At the repo root:
 
@@ -91,18 +89,18 @@ At the repo root:
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/REPLACE_ME
 ```
 
-### Start Node-RED
+### 3) Start and configure Node-RED
 
-In cmd / PowerShell:
+1. In cmd / PowerShell:
 
-```bat
-powershell -ExecutionPolicy Bypass -File .\tools\run_nodered.ps1
-```
+   ```bat
+   powershell -ExecutionPolicy Bypass -File .\tools\run_nodered.ps1
+   ```
 
-Open in browser:
-- http://127.0.0.1:1880/
+2. Open in browser:
+   - http://127.0.0.1:1880/
 
-Import the node_red_flow.json into node_red.
+3. Import the node_red_flow.json into node_red.
 
-Use the inject node to verify your alerts are working
+   Use the inject node to verify your alerts are working
 
