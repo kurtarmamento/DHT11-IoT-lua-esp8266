@@ -104,3 +104,33 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/REPLACE_ME
 
    Use the inject node to verify your alerts are working
 
+## Simulator (no hardware required)
+
+This repo includes a PC-side simulator that publishes the same MQTT topics as the ESP8266, so you can demo the pipeline without hardware
+
+### Requirements
+
+Install requirements through powershell
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r .\tools\requirements_pc.txt
+```
+
+### Run
+Run the simulator
+
+```powershell
+python .\tools\sim_device.py --host 127.0.0.1 --port 1883 --device-id room-sensor-01 --interval 10 --retain
+```
+
+Verify functionality
+```powershell
+mosquitto_sub -h 127.0.0.1 -p 1883 -t "sensors/room-sensor-01/#" -v
+```
+
+### Output
+The simulator can be connected to any IoT dashboard using your computer's IPv4 address and port 1883.
+
+It will also send alerts to discord once Node-Red is configured.

@@ -6,3 +6,4 @@ src/mqtt_client.lua
 src/notify.lua
 .env
 *.env
+.idea/
