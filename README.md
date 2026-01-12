@@ -28,7 +28,7 @@ flowchart LR
   Broker -- "MQTT subscribe" --> Dashboard[Android MQTT Dashboard]
   Broker -- "MQTT subscribe" --> NR[Node-RED]
   NR -- "HTTPS POST" --> Discord[Discord Webhook]
-
+  ...
 
 ## MQTT Topics
 
@@ -76,7 +76,7 @@ Recommended structure:
   - architecture.md
   - config.md
   - node_red_discord.md
-  - node_red_flow_example.json
+  - node_red_flow.json
   - pc_setup.md
   - testing.md
   - troubleshooting.md
@@ -90,6 +90,8 @@ Recommended structure:
   - mqtt_pub.lua
   - notify.lua
   - server.lua
+- tools/
+  - run_nodered.ps1
 - .gitignore
 - FIRMWARE.md
 - LICENSE.md

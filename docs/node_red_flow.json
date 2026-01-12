@@ -1,0 +1,23 @@
+[
+    {
+        "id": "ad58b1988090d899",
+        "type": "function",
+        "z": "33b5ca4eb8d68c83",
+        "name": "function 1",
+        "func": "// Get URL from env\nconst url = env.get(\"DISCORD_WEBHOOK_URL\")\n\n// Expect msg.payload from MQTT to be your alert text (string or JSON).\nconst alertText = (typeof msg.payload === \"string\")\n  ? msg.payload\n  : JSON.stringify(msg.payload);\n\n// Set up the HTTP request properties\nmsg.method = \"POST\";\nmsg.url = url\nmsg.headers = { \"Content-Type\": \"application/json\" };\n\n// Discord webhook basic payload\nmsg.payload = { content: \"[Room Sensor Alert] \" + alertText };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 280,
+        "wires": [
+            [
+                "8ffbe6dc6f2cb0ee",
+                "20f34fa32c325ca9"
+            ]
+        ]
+    }
+]

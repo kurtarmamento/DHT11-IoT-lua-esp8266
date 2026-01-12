@@ -1,5 +1,8 @@
 firmware/NodeMCU-PyFlasher.exe
 IDE/
 src/config.lua
+src/alerts.lua
+src/mqtt_client.lua
+src/notify.lua
 .env
 *.env
