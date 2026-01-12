@@ -122,7 +122,7 @@ pip install -r .\tools\requirements_pc.txt
 Run the simulator
 
 ```powershell
-python .\tools\sim_device.py --host 127.0.0.1 --port 1883 --device-id room-sensor-01 --interval 10 --retain
+python .\tools\sim_device.py --host 127.0.0.1 --port 1883 --device-id room-sensor-1 --interval 10 --retain
 ```
 
 Verify functionality
