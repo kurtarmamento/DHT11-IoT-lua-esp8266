@@ -1,3 +1,5 @@
-Firmware/NodeMCU-PyFlasher.exe
+firmware/NodeMCU-PyFlasher.exe
 IDE/
 src/config.lua
+.env
+*.env

@@ -21,24 +21,14 @@ A room temperature + humidity sensor built on ESP8266 (NodeMCU firmware, Lua) wi
 
 ## Architecture
 
-```
-[DHT11] -> [ESP8266 / NodeMCU Lua]
-             |  HTTP (port 80)
-             |--> Phone browser (manual check)
-             |
-             |  MQTT publish (port 1883)
-             v
-        [Mosquitto Broker on PC]
-             | MQTT subscribe
-             |--> Android MQTT dashboard (live values)
-             |
-             | MQTT subscribe
-             v
-          [Node-RED]
-             | HTTPS POST
-             v
-        [Discord Webhook]
-```
+flowchart LR
+  DHT11[DHT11 Sensor] --> ESP[ESP8266 / NodeMCU Lua]
+  ESP -- "HTTP :80 (GET /, /json)" --> Phone[Phone Browser]
+  ESP -- "MQTT :1883 (publish)" --> Broker[Mosquitto Broker (PC)]
+  Broker -- "MQTT subscribe" --> Dashboard[Android MQTT Dashboard]
+  Broker -- "MQTT subscribe" --> NR[Node-RED]
+  NR -- "HTTPS POST" --> Discord[Discord Webhook]
+
 
 ## MQTT Topics
 
@@ -112,7 +102,7 @@ Recommended structure:
 See `FIRMWARE.md`.
 
 ### 2) Configure device (do not commit secrets)
-1. Copy `config.example.lua` → `config.lua`
+1. Copy `config_example.lua` → `config.lua`
 2. Fill in Wi-Fi + broker settings
 3. Upload files to the ESP:
    - `init.lua`
@@ -146,5 +136,5 @@ See `docs/node_red_discord.md`.
 ## Security Notes
 
 - Never commit `config.lua` (contains Wi-Fi credentials and potentially webhook URLs).
-- Use `config.example.lua` for the repo.
+- Use `config_example.lua` for the repo.
 - Treat Discord webhooks as secrets.
