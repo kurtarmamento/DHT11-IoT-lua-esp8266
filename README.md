@@ -73,6 +73,8 @@ Recommended structure:
     - node_red_flow.png
     - boot-log.png
     - simulator-log.png
+    - docker-containers.png
+    - docker-node-red-alerts.png
   - architecture.md
   - config.md
   - node_red_flow.json
@@ -90,11 +92,44 @@ Recommended structure:
   - run_nodered.ps1
   - requirements_pc.txt
   - sim_device.py
+  - stack.ps1
+- docker/mosquitto/
+  - mosquitto.conf
 - .gitignore
+- compose.yaml
+- .env.example
 - FIRMWARE.md
 - LICENSE.md
 - README.md
 ```
+
+## Docker Quick Start (Mosquitto + Node-Red)
+
+This repo includea Docker compose stack to run the PC-side services reproducibly.
+
+### Prerequisites
+ - Docker Desktop installed and running
+
+### Configure Discord Webhook
+ 1. Copy ".env.example" to ".env"
+ 2. Set "DISCORD_WEBHOOK_URL" in ".env" (Get this from your chosen discord text channel)
+ 3. Do not commit ".env" (It is ignored in ".gitignore")
+
+### Using Docker Services
+```powershell
+docker compose up -d
+# or
+.\tools\stack.ps1 up
+```
+
+*Note: When running Node-Red in Docker*
+>Host: mosquitto
+>Port: 1883
+
+Then use simulator or configured ESP8266.
+
+For more details, see pc_setup.md
+
 
 ## Setup Overview
 
@@ -142,6 +177,11 @@ See `docs/node_red_discord.md`.
 
 ## Results
 
+### Base setup
 ![Android Dashboard](/docs/images/android-dashboard.jpg "Andrdoid Dashboard")
 ![Discord Alerts](/docs/images/discord-alerts.png "Discord Alerts")
 ![Node Red Flow](/docs/images/node-red-flow.png "Node Red Flow")
+
+### Docker
+![Docker Containers](/docs/images/docker-containers.png "Docker Containers")
+![Docker Node-Red Log](/docs/images/docker-node-red-alerts.png "Docker Node-Red Log")

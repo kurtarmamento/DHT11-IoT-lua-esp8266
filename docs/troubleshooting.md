@@ -40,3 +40,8 @@ If you want repeated reminders, implement a “still high” reminder path.
 - Discord webhook URL incorrect
 - flow not deployed
 - check `debug` node after the HTTP request node
+
+## Node-RED not receiving signals while using Docker despite saying "Connected"
+- Ensure Discord webhook URL is correct; test with inject node
+- Test Docker MQTT broker with phone; connect using PC (or host) ip address, port: 1883
+- Ensure MQTT services is not running locally on your PC; stop service in services.msc

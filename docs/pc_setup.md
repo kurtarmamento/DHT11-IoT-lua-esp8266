@@ -134,3 +134,71 @@ mosquitto_sub -h 127.0.0.1 -p 1883 -t "sensors/room-sensor-01/#" -v
 The simulator can be connected to any IoT dashboard using your computer's IPv4 address and port 1883.
 
 It will also send alerts to discord once Node-Red is configured.
+
+
+## Docker Stack (Mosquitto + Node-Red)
+
+This repo includes a Docker Compose stack so the PC-side services are reproducible across machines.
+
+### Prerequisite
+ - Docker Desktop installed and running
+ - .env configured with Discord Webhook as detailed under "Node-Red"
+
+### Using Docker
+
+Docker can be run using the included helper script
+
+Start Service:
+
+```powershell
+.\tools\stack.ps1 up
+```
+
+Stop Service:
+
+```powershell
+.\tools\stack.ps1 down
+```
+
+Restart Service:
+```powershell
+.\tools\stack.ps1 restart
+```
+
+Check logs:
+
+```powershell
+.\tools\stack.ps1 logs
+```
+
+Check status:
+```powershell
+.\tools\stack.ps1 ps
+```
+
+> Mosquitto Broker: localhost:1883
+> Node-Red UI: http//localhost:1880
+
+*Note: When running Node-Red in Docker*
+>Host: mosquitto
+>Port: 1883
+
+### Stop Services
+
+```powershell
+docker compose down
+```
+
+### Reset Services (Delete Data)
+
+```powershell
+docker compose down -v
+```
+
+### Verify with Simulator
+
+```powershell
+python .\tools\sim_device.py --host 127.0.0.1 --port 1883 --device-id room-sensor-01 --interval 5 --retain
+```
+
+With Node-Red running, discord alerts should trigger as expected.
