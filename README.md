@@ -64,7 +64,6 @@ All topics are namespaced by `DEVICE_ID`.
 Recommended structure:
 
 ```
-.
 - docs/
   - images/
     - android-dashboard.jpg
